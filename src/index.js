@@ -8,10 +8,6 @@ module.exports = function check(str, bracketsConfig) {
   }
 
   searchBrackets();
-  searchBrackets();
-  searchBrackets();
-  searchBrackets();
-  searchBrackets();
   
   if (str.length > 0) {
     return false;
@@ -20,12 +16,14 @@ module.exports = function check(str, bracketsConfig) {
   }
 
   function searchBrackets() {
-    for (var j = 0; j < wichBrackets.length; j++) {
+    for (var j = 0; j < wichBrackets.length; ) {
       
       if (str.indexOf(wichBrackets[j]) !== -1) {
         var index = str.indexOf(wichBrackets[j]);
         str = str.substring(0, index) + str.slice(index+2);
-        j--;
+        j = 0;
+      } else if (str.indexOf(wichBrackets[j]) === -1) {
+        j++;
       }
     }
   }
